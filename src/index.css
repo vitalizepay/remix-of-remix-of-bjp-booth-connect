@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* BJP Coimbatore Design System
+   Primary: BJP Saffron (#FF9933)
+   Secondary: White
+   Accent: Green
+   All colors in HSL format
+*/
+
+@layer base {
+  :root {
+    /* BJP Brand Colors */
+    --saffron: 30 100% 60%;
+    --saffron-dark: 30 100% 50%;
+    --saffron-light: 30 100% 70%;
+    
+    --bjp-green: 120 40% 35%;
+    --bjp-green-light: 120 40% 45%;
+    
+    --warning-yellow: 45 100% 55%;
+    
+    /* Semantic Tokens */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+
+    --primary: 30 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 120 40% 35%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 30 100% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 25%;
+    --sidebar-primary: 30 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 94%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 30 100% 60%;
+    
+    /* Status Colors */
+    --status-supporter: 120 50% 40%;
+    --status-neutral: 45 90% 50%;
+    --status-opponent: 0 70% 50%;
+    --status-postal: 220 70% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 30 100% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 120 40% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 30 100% 55%;
+    
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 30 100% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 30 100% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Noto Sans Tamil', 'Noto Sans', sans-serif;
+  }
+  
+  /* Tamil font support */
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap');
+}
+
+@layer components {
+  /* BJP Header Style */
+  .bjp-header {
+    @apply bg-primary text-primary-foreground;
+    background: linear-gradient(135deg, hsl(var(--saffron)) 0%, hsl(var(--saffron-dark)) 100%);
+  }
+  
+  /* Stats Card Style */
+  .stats-card {
+    @apply bg-card rounded-lg shadow-sm border border-border overflow-hidden;
+  }
+  
+  .stats-card-header {
+    @apply bg-primary text-primary-foreground px-4 py-2 font-semibold text-center;
+  }
+  
+  /* Bottom Navigation */
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-card border-t border-border;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .bottom-nav-item {
+    @apply flex flex-col items-center justify-center py-2 px-3 text-muted-foreground transition-colors;
+  }
+  
+  .bottom-nav-item.active {
+    @apply text-primary;
+  }
+  
+  /* Badge styles for voter status */
+  .badge-supporter {
+    @apply bg-green-600 text-white;
+  }
+  
+  .badge-neutral {
+    @apply bg-yellow-500 text-white;
+  }
+  
+  .badge-opponent {
+    @apply bg-red-500 text-white;
+  }
+  
+  .badge-postal {
+    @apply bg-blue-600 text-white;
+  }
+  
+  .badge-alliance {
+    @apply bg-purple-600 text-white;
+  }
+  
+  /* Progress bar override */
+  .progress-saffron {
+    @apply bg-primary/20;
+  }
+  
+  .progress-saffron > div {
+    @apply bg-primary;
+  }
+}
+
+/* PWA iOS Safe Area */
+@supports (padding: max(0px)) {
+  .safe-area-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  .safe-area-top {
+    padding-top: max(0px, env(safe-area-inset-top));
+  }
+}
