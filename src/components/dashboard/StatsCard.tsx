@@ -25,24 +25,24 @@ const StatsCard: React.FC<StatsCardProps> = ({
 
   return (
     <div className="stats-card">
-      <div className="stats-card-header">
+      <div className="stats-card-header text-sm sm:text-base">
         {t(titleKey)}
       </div>
-      <div className="p-4 space-y-3">
+      <div className="p-3 sm:p-4 space-y-2 sm:space-y-3">
         <div className="text-center">
-          <p className="text-lg font-bold text-foreground">
+          <p className="text-base sm:text-lg font-bold text-foreground">
             {t(percentageKey)}: {percentage.toFixed(2)}%
           </p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             {t(totalKey)}: {total}
           </p>
         </div>
         
         <div className="relative">
-          <Progress value={percentage} className="h-2 progress-saffron" />
+          <Progress value={percentage} className="h-1.5 sm:h-2 progress-saffron" />
         </div>
         
-        <p className="text-sm text-muted-foreground text-center">
+        <p className="text-xs sm:text-sm text-muted-foreground text-center">
           {language === 'ta' 
             ? `${t(coveredKey)}: ${covered} ${t('outOf')} ${total}`
             : `${t(coveredKey)}: ${covered} ${t('outOf')} ${total}`

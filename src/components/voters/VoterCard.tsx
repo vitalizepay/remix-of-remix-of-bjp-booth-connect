@@ -81,24 +81,25 @@ const VoterCard: React.FC<VoterCardProps> = ({
   ];
 
   return (
-    <div className="bg-card border border-border rounded-lg overflow-hidden">
+    <div className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
       {/* Voter Header */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-muted/50">
-        <div className={cn('w-3 h-3 rounded-full', indicatorColor)} />
-        <h3 className="flex-1 font-semibold text-foreground">
+      <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-muted/50">
+        <div className={cn('w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full flex-shrink-0', indicatorColor)} />
+        <h3 className="flex-1 font-semibold text-foreground text-sm sm:text-base truncate">
           {index} - {language === 'ta' && nameTamil ? nameTamil : name}
         </h3>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9 touch-target flex-shrink-0">
               <MoreVertical className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
+          <DropdownMenuContent align="end" className="w-56 z-[60]">
             {actions.map((action) => (
               <DropdownMenuItem
                 key={action}
                 onClick={() => onAction?.(action)}
+                className="touch-target"
               >
                 {t(action)}
               </DropdownMenuItem>
@@ -108,9 +109,9 @@ const VoterCard: React.FC<VoterCardProps> = ({
       </div>
 
       {/* Voter Content */}
-      <div className="flex gap-4 p-4">
+      <div className="flex gap-3 sm:gap-4 p-3 sm:p-4">
         {/* Photo */}
-        <div className="w-20 h-24 bg-muted rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center border border-border">
+        <div className="w-16 h-20 sm:w-20 sm:h-24 bg-muted rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center border border-border">
           {photoUrl ? (
             <img
               src={photoUrl}
@@ -119,20 +120,20 @@ const VoterCard: React.FC<VoterCardProps> = ({
             />
           ) : (
             <div className="text-center text-muted-foreground">
-              <User className="w-8 h-8 mx-auto" />
-              <p className="text-[10px] mt-1">NO IMAGE<br />AVAILABLE</p>
+              <User className="w-6 h-6 sm:w-8 sm:h-8 mx-auto" />
+              <p className="text-[8px] sm:text-[10px] mt-1">NO IMAGE<br />AVAILABLE</p>
             </div>
           )}
         </div>
 
         {/* Details */}
-        <div className="flex-1 space-y-1 text-sm">
+        <div className="flex-1 min-w-0 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
           {fatherName && (
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground truncate">
               {t('fatherName')}: {fatherName}
             </p>
           )}
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground truncate">
             {t('voterId')}: {voterId}
           </p>
           <p className="text-muted-foreground">
@@ -143,17 +144,17 @@ const VoterCard: React.FC<VoterCardProps> = ({
           </p>
 
           {/* Badges */}
-          <div className="flex flex-wrap gap-1 pt-2">
-            <Badge className={cn('text-xs', statusBadge.className)}>
+          <div className="flex flex-wrap gap-1 pt-1.5 sm:pt-2">
+            <Badge className={cn('text-[10px] sm:text-xs px-1.5 sm:px-2', statusBadge.className)}>
               {statusBadge.label}
             </Badge>
             {religion && (
-              <Badge variant="outline" className="text-xs bg-red-100 text-red-700 border-red-200">
+              <Badge variant="outline" className="text-[10px] sm:text-xs px-1.5 sm:px-2 bg-red-100 text-red-700 border-red-200">
                 {religion}
               </Badge>
             )}
             {community && (
-              <Badge variant="outline" className="text-xs bg-gray-100 text-gray-700 border-gray-200">
+              <Badge variant="outline" className="text-[10px] sm:text-xs px-1.5 sm:px-2 bg-gray-100 text-gray-700 border-gray-200">
                 {community}
               </Badge>
             )}

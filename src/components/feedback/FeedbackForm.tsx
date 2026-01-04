@@ -90,19 +90,19 @@ const FeedbackForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4">
+    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 p-3 sm:p-4 md:p-6 max-w-2xl mx-auto">
       {/* Category */}
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-foreground">
+      <div className="space-y-1.5 sm:space-y-2">
+        <label className="text-xs sm:text-sm font-semibold text-foreground">
           {t('messageCategory')}:
         </label>
         <Select value={category} onValueChange={setCategory}>
-          <SelectTrigger>
+          <SelectTrigger className="h-10 sm:h-11 text-sm sm:text-base">
             <SelectValue placeholder={t('selectCategory')} />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="z-[60]">
             {categories.map((cat) => (
-              <SelectItem key={cat.value} value={cat.value}>
+              <SelectItem key={cat.value} value={cat.value} className="touch-target">
                 {t(cat.labelKey)}
               </SelectItem>
             ))}
@@ -111,8 +111,8 @@ const FeedbackForm: React.FC = () => {
       </div>
 
       {/* Subject */}
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-foreground">
+      <div className="space-y-1.5 sm:space-y-2">
+        <label className="text-xs sm:text-sm font-semibold text-foreground">
           {t('messageSubject')}:
         </label>
         <Input
@@ -120,41 +120,43 @@ const FeedbackForm: React.FC = () => {
           placeholder={t('enterSubject')}
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
+          className="h-10 sm:h-11 text-sm sm:text-base"
         />
       </div>
 
       {/* Description */}
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-foreground">
+      <div className="space-y-1.5 sm:space-y-2">
+        <label className="text-xs sm:text-sm font-semibold text-foreground">
           {t('messageDescription')}:
         </label>
         <Textarea
           placeholder={t('enterMessage')}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          rows={5}
+          rows={4}
+          className="text-sm sm:text-base min-h-[100px] sm:min-h-[120px]"
         />
       </div>
 
       {/* Attachments */}
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-foreground">
+      <div className="space-y-1.5 sm:space-y-2">
+        <label className="text-xs sm:text-sm font-semibold text-foreground">
           {t('attachments')}:
         </label>
         <Button
           type="button"
           variant="outline"
-          className="w-full justify-start gap-2"
+          className="w-full justify-start gap-2 h-10 sm:h-11 touch-target"
         >
           <Paperclip className="h-4 w-4" />
-          <span className="text-muted-foreground">Add attachments</span>
+          <span className="text-muted-foreground text-sm">Add attachments</span>
         </Button>
       </div>
 
       {/* Submit */}
       <Button
         type="submit"
-        className="w-full bg-primary hover:bg-primary/90"
+        className="w-full bg-primary hover:bg-primary/90 h-11 sm:h-12 text-sm sm:text-base touch-target"
         disabled={isSubmitting}
       >
         {isSubmitting ? t('loading') : t('submit')}

@@ -30,14 +30,14 @@ const DoorCard: React.FC<DoorCardProps> = ({
   const { t, language } = useLanguage();
 
   return (
-    <div className="bg-card border border-border rounded-lg overflow-hidden">
+    <div className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
       {/* Door Header */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 border-b border-border">
+      <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-muted/50 border-b border-border">
         <div className={cn(
-          'w-3 h-3 rounded-full',
+          'w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full flex-shrink-0',
           isCovered ? 'bg-green-500' : 'bg-yellow-500'
         )} />
-        <h3 className="font-semibold text-foreground">
+        <h3 className="font-semibold text-foreground text-sm sm:text-base truncate">
           {t('door')} {t('boothNumber').split(' ')[0]}: {doorNumber} ({votersCount.current}/{votersCount.total})
         </h3>
       </div>
@@ -45,9 +45,9 @@ const DoorCard: React.FC<DoorCardProps> = ({
       {/* Voters List */}
       <div className="divide-y divide-border">
         {voters.map((voter, index) => (
-          <div key={voter.voterId} className="flex gap-3 p-3">
+          <div key={voter.voterId} className="flex gap-2 sm:gap-3 p-2 sm:p-3">
             {/* Voter Photo */}
-            <div className="w-16 h-20 bg-muted rounded overflow-hidden flex-shrink-0 flex items-center justify-center border border-border">
+            <div className="w-12 h-16 sm:w-16 sm:h-20 bg-muted rounded overflow-hidden flex-shrink-0 flex items-center justify-center border border-border">
               {voter.photoUrl ? (
                 <img
                   src={voter.photoUrl}
@@ -55,23 +55,23 @@ const DoorCard: React.FC<DoorCardProps> = ({
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="text-center text-muted-foreground text-[10px]">
+                <div className="text-center text-muted-foreground text-[8px] sm:text-[10px]">
                   NO IMAGE<br />AVAILABLE
                 </div>
               )}
             </div>
 
             {/* Voter Info */}
-            <div className="flex-1 text-sm">
-              <p className="font-semibold text-foreground">
+            <div className="flex-1 min-w-0 text-xs sm:text-sm">
+              <p className="font-semibold text-foreground truncate">
                 {index + 1}.{language === 'ta' && voter.nameTamil ? voter.nameTamil : voter.name}
               </p>
               {voter.fatherName && (
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground truncate">
                   {t('fatherName')}: {voter.fatherName}
                 </p>
               )}
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground truncate">
                 {t('voterId')}: {voter.voterId}
               </p>
               <p className="text-muted-foreground">
@@ -84,8 +84,8 @@ const DoorCard: React.FC<DoorCardProps> = ({
 
       {/* Family Name */}
       {familyName && (
-        <div className="px-4 py-2 bg-muted/30 border-t border-border">
-          <p className="text-sm text-center text-muted-foreground font-medium">
+        <div className="px-3 sm:px-4 py-2 bg-muted/30 border-t border-border">
+          <p className="text-xs sm:text-sm text-center text-muted-foreground font-medium truncate">
             {familyName}
           </p>
         </div>

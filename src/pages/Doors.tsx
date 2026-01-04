@@ -83,12 +83,12 @@ const Doors: React.FC = () => {
     <AppLayout>
       <TabNavigation tabs={tabs} activeTab="doors" onTabChange={() => {}} />
       
-      <div className="p-4">
-        <h2 className="text-lg font-bold mb-4 text-foreground">
+      <div className="p-3 sm:p-4 md:p-6">
+        <h2 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-foreground">
           {t('door')}கள்
         </h2>
         
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {demoDoors.map((door, index) => (
             <DoorCard
               key={index}

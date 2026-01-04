@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
       <TabNavigation tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
 
       {activeTab === 'booth' ? (
-        <div className="p-4 space-y-4">
+        <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4">
           {/* Booth Info Card */}
           <BoothInfo
             boothNumber={currentBooth.booth_number}
@@ -88,62 +88,64 @@ const Dashboard: React.FC = () => {
             boothIndex={currentBooth.booth_index || 0}
           />
 
-          {/* Stats Cards */}
-          <StatsCard
-            titleKey="membersVsVoters"
-            percentageKey="memberPercentage"
-            percentage={memberPercentage}
-            totalKey="totalVoters"
-            total={currentBooth.total_voters}
-            coveredKey="bjpMembers"
-            covered={currentBooth.bjp_members}
-          />
+          {/* Stats Cards - Grid on tablet+ */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+            <StatsCard
+              titleKey="membersVsVoters"
+              percentageKey="memberPercentage"
+              percentage={memberPercentage}
+              totalKey="totalVoters"
+              total={currentBooth.total_voters}
+              coveredKey="bjpMembers"
+              covered={currentBooth.bjp_members}
+            />
 
-          <StatsCard
-            titleKey="supportersVsVoters"
-            percentageKey="supporterPercentage"
-            percentage={supporterPercentage}
-            totalKey="totalVoters"
-            total={currentBooth.total_voters}
-            coveredKey="bjpSupporters"
-            covered={currentBooth.bjp_supporters}
-          />
+            <StatsCard
+              titleKey="supportersVsVoters"
+              percentageKey="supporterPercentage"
+              percentage={supporterPercentage}
+              totalKey="totalVoters"
+              total={currentBooth.total_voters}
+              coveredKey="bjpSupporters"
+              covered={currentBooth.bjp_supporters}
+            />
 
-          <StatsCard
-            titleKey="doorsVsTotalDoors"
-            percentageKey="doorPercentage"
-            percentage={doorPercentage}
-            totalKey="totalDoors"
-            total={currentBooth.total_doors}
-            coveredKey="doorsCovered"
-            covered={currentBooth.doors_covered}
-          />
+            <StatsCard
+              titleKey="doorsVsTotalDoors"
+              percentageKey="doorPercentage"
+              percentage={doorPercentage}
+              totalKey="totalDoors"
+              total={currentBooth.total_doors}
+              coveredKey="doorsCovered"
+              covered={currentBooth.doors_covered}
+            />
 
-          <StatsCard
-            titleKey="pagesVsTotalPages"
-            percentageKey="pagePercentage"
-            percentage={pagePercentage}
-            totalKey="totalPages"
-            total={currentBooth.total_pages}
-            coveredKey="pagesCovered"
-            covered={currentBooth.pages_covered}
-          />
+            <StatsCard
+              titleKey="pagesVsTotalPages"
+              percentageKey="pagePercentage"
+              percentage={pagePercentage}
+              totalKey="totalPages"
+              total={currentBooth.total_pages}
+              coveredKey="pagesCovered"
+              covered={currentBooth.pages_covered}
+            />
+          </div>
         </div>
       ) : activeTab === 'import' ? (
-        <div className="p-4">
+        <div className="p-3 sm:p-4 md:p-6">
           <VoterImport boothId={currentBooth?.id} />
         </div>
       ) : (
-        <div className="p-4">
-          <div className="bg-muted rounded-lg h-96 flex items-center justify-center">
-            <div className="text-center text-muted-foreground">
-              <p className="text-lg font-semibold mb-2">
+        <div className="p-3 sm:p-4 md:p-6">
+          <div className="bg-muted rounded-lg h-64 sm:h-80 md:h-96 flex items-center justify-center">
+            <div className="text-center text-muted-foreground px-4">
+              <p className="text-base sm:text-lg font-semibold mb-2">
                 {t('boothMapView')}
               </p>
-              <p className="text-sm">
+              <p className="text-xs sm:text-sm">
                 Google Maps integration coming soon
               </p>
-              <p className="text-xs mt-2">
+              <p className="text-[10px] sm:text-xs mt-2">
                 Add GOOGLE_MAPS_API_KEY to enable maps
               </p>
             </div>

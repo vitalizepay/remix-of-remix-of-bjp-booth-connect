@@ -109,24 +109,24 @@ const Auth: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen min-h-[100dvh] bg-background flex flex-col">
       {/* Header */}
-      <div className="bjp-header px-4 py-6 text-center safe-area-top">
-        <h1 className="text-2xl font-bold">{t('appName')}</h1>
+      <div className="bjp-header px-4 py-4 sm:py-6 text-center safe-area-top">
+        <h1 className="text-xl sm:text-2xl font-bold">{t('appName')}</h1>
       </div>
 
       {/* Auth Form */}
-      <div className="flex-1 flex items-center justify-center p-4">
+      <div className="flex-1 flex items-center justify-center p-4 sm:p-6">
         <div className="w-full max-w-md">
-          <div className="bg-card rounded-2xl shadow-lg border border-border p-6">
-            <h2 className="text-2xl font-bold text-center text-foreground mb-6">
+          <div className="bg-card rounded-2xl shadow-lg border border-border p-4 sm:p-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-center text-foreground mb-4 sm:mb-6">
               {isLogin ? t('welcomeBack') : t('createAccount')}
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               {!isLogin && (
-                <div className="space-y-2">
-                  <Label htmlFor="fullName">{t('fullName')}</Label>
+                <div className="space-y-1.5 sm:space-y-2">
+                  <Label htmlFor="fullName" className="text-sm sm:text-base">{t('fullName')}</Label>
                   <Input
                     id="fullName"
                     type="text"
@@ -134,12 +134,13 @@ const Auth: React.FC = () => {
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder={language === 'ta' ? 'உங்கள் பெயர்' : 'Enter your name'}
                     required={!isLogin}
+                    className="h-11 sm:h-12 text-base"
                   />
                 </div>
               )}
 
-              <div className="space-y-2">
-                <Label htmlFor="email">{t('email')}</Label>
+              <div className="space-y-1.5 sm:space-y-2">
+                <Label htmlFor="email" className="text-sm sm:text-base">{t('email')}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -147,11 +148,12 @@ const Auth: React.FC = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={language === 'ta' ? 'உங்கள் மின்னஞ்சல்' : 'Enter your email'}
                   required
+                  className="h-11 sm:h-12 text-base"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="password">{t('password')}</Label>
+              <div className="space-y-1.5 sm:space-y-2">
+                <Label htmlFor="password" className="text-sm sm:text-base">{t('password')}</Label>
                 <Input
                   id="password"
                   type="password"
@@ -159,25 +161,26 @@ const Auth: React.FC = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={language === 'ta' ? 'கடவுச்சொல்' : 'Enter password'}
                   required
+                  className="h-11 sm:h-12 text-base"
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full"
+                className="w-full h-11 sm:h-12 text-base touch-target"
                 disabled={isLoading}
               >
                 {isLoading ? t('loading') : isLogin ? t('login') : t('signup')}
               </Button>
             </form>
 
-            <div className="mt-6 text-center">
-              <p className="text-sm text-muted-foreground">
+            <div className="mt-4 sm:mt-6 text-center">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 {isLogin ? t('noAccount') : t('haveAccount')}{' '}
                 <button
                   type="button"
                   onClick={() => setIsLogin(!isLogin)}
-                  className="text-primary font-semibold hover:underline"
+                  className="text-primary font-semibold hover:underline active:opacity-70"
                 >
                   {isLogin ? t('signup') : t('login')}
                 </button>
