@@ -113,9 +113,16 @@
     @apply border-border;
   }
 
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Noto Sans Tamil', 'Noto Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   
   /* Tamil font support */
@@ -140,12 +147,13 @@
   
   /* Bottom Navigation */
   .bottom-nav {
-    @apply fixed bottom-0 left-0 right-0 bg-card border-t border-border;
+    @apply fixed bottom-0 left-0 right-0 bg-card border-t border-border z-50;
     padding-bottom: env(safe-area-inset-bottom);
   }
   
   .bottom-nav-item {
     @apply flex flex-col items-center justify-center py-2 px-3 text-muted-foreground transition-colors;
+    min-height: 56px;
   }
   
   .bottom-nav-item.active {
@@ -181,6 +189,40 @@
   .progress-saffron > div {
     @apply bg-primary;
   }
+
+  /* Responsive container */
+  .responsive-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Mobile touch-friendly buttons */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Card grid layouts */
+  .card-grid {
+    @apply grid gap-4;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  /* Tablet optimized grid */
+  @screen md {
+    .card-grid {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+  }
+
+  /* Scrollable tabs */
+  .scrollable-tabs {
+    @apply flex overflow-x-auto scrollbar-hide;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .scrollable-tabs > * {
+    scroll-snap-align: start;
+  }
 }
 
 /* PWA iOS Safe Area */
@@ -191,5 +233,42 @@
   
   .safe-area-top {
     padding-top: max(0px, env(safe-area-inset-top));
+  }
+
+  .safe-area-left {
+    padding-left: max(0px, env(safe-area-inset-left));
+  }
+
+  .safe-area-right {
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Hide scrollbar for scrollable elements */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive typography */
+@screen sm {
+  html {
+    font-size: 16px;
+  }
+}
+
+@screen md {
+  html {
+    font-size: 16px;
+  }
+}
+
+@screen lg {
+  html {
+    font-size: 17px;
   }
 }

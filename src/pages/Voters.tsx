@@ -166,32 +166,34 @@ const Voters: React.FC = () => {
         onSearchChange={setSearchQuery}
       />
 
-      <div className="p-4 space-y-4">
+      <div className="p-3 sm:p-4 md:p-6">
         {isLoading ? (
-          <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             <Skeleton className="h-40 w-full" />
             <Skeleton className="h-40 w-full" />
             <Skeleton className="h-40 w-full" />
-          </>
+          </div>
         ) : (
-          displayVoters.map((voter, index) => (
-            <VoterCard
-              key={voter.id}
-              index={index + 1}
-              name={voter.name}
-              nameTamil={voter.name_tamil || undefined}
-              fatherName={voter.father_name || undefined}
-              voterId={voter.voter_id || 'N/A'}
-              age={voter.age || 0}
-              gender={voter.gender || 'other'}
-              doorNumber={voter.door_number || '-'}
-              photoUrl={voter.photo_url || undefined}
-              supportStatus={voter.support_status}
-              religion={voter.religion || undefined}
-              community={voter.community || undefined}
-              onAction={(action) => handleVoterAction(voter.id, action)}
-            />
-          ))
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {displayVoters.map((voter, index) => (
+              <VoterCard
+                key={voter.id}
+                index={index + 1}
+                name={voter.name}
+                nameTamil={voter.name_tamil || undefined}
+                fatherName={voter.father_name || undefined}
+                voterId={voter.voter_id || 'N/A'}
+                age={voter.age || 0}
+                gender={voter.gender || 'other'}
+                doorNumber={voter.door_number || '-'}
+                photoUrl={voter.photo_url || undefined}
+                supportStatus={voter.support_status}
+                religion={voter.religion || undefined}
+                community={voter.community || undefined}
+                onAction={(action) => handleVoterAction(voter.id, action)}
+              />
+            ))}
+          </div>
         )}
       </div>
     </AppLayout>
